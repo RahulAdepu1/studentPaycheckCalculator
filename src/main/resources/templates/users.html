@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>List Users</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Student PayCal</title>
+    <link rel="icon" type="image/png" th:href="@{/images/money.png}">
+    <link rel="stylesheet" th:href="@{/css/mystyle.css}">
+    <link rel="stylesheet" th:href="@{/css/section1style.css}">
+    <link rel="stylesheet" th:href="@{/css/section2style.css}">
+    <link rel="stylesheet" th:href="@{/css/section3style.css}">
+    
+</head>
+
+<body>
+    <!-- MENU SECTION -->
+    <nav class="navbar">
+        <div class="navbar--logo">
+            <h3>Student Paycheck Estimator</h3>
+        </div>
+        <div class="navbar--menusections">
+            <div class="navbar--menusections--item"> <a href="#section1--header">Tax Estimator</a></div>
+            <div class="navbar--menusections--item"> <a href="#section2">Salary Rate Convertor</a></div>
+            <div class="navbar--menusections--item"> <a href="#section3">My History</a></div>
+        </div>
+        <div class="navbar--signout">
+            <div class="navbar--signout signout">Sign Out</div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="section1--header" class="section1--header">
+        <div class="section1--header--block">
+            <div class="section1--header--block--title">Student Paycheck Estimator</div>
+            <div class="section1--header--block--subtitle">Find out how much you will earn after taxes as a Student
+            </div>
+        </div>
+    </header>
+
+    <!-- USER INPUT SECTION -->
+    <section id="section1" class="section1">
+        <div class="section1--block">
+            <div class="section1--block--form">
+                <div class="section1--block--form--block">
+                    <div class="section1--block--form--block--items enter--salary">
+                        <label>Salary Rate</label>
+                        <input type="number" id="salary-rate-id" value="12">
+                    </div>
+                    <div class="section1--block--form--block--items salary--rate">
+                        <label>Hrs Worked/Week</label>
+                        <input type="number" id="hours-worked-id" value="20">
+                    </div>
+                    <div class="section1--block--form--block--items salary--rate">
+                        <label>Pay Type</label>
+                        <select id="salary-pay-type-id">
+                            <option value="Hourly" selected> Hourly</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <div class="section1--block--form--block--items salary--rate">
+                        <label>Pay Frequency</label>
+                        <select id="salary-pay-freq-id">
+                            <option value="Bi-Monthly" selected>Bi-Monthly</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="section1--block--form--button">
+                    <button class="section1--block--form--button calculate--button" id="calculateButton">Calculate</button>
+                </div>
+            </div>
+            <div class="section1--block--output">
+                <div class="section1--block--output--box">
+                    <div class="section1--block--output--box--table">
+                        <div class="section1--block--output--box--table table-title">Witholding</div>
+                        <div class="section1--block--output--box--table content">
+                            <div class="section1--block--output--box--table table-row">
+                                <div class="section1--block--output--box--table--cell first-cell subtitle">Salary</div>
+                                <div class="section1--block--output--box--table--cell last-cell subtitle" id="salaryTotal">$520.00</div>
+                            </div>
+                            <div class="section1--block--output--box--table table-row">
+                                <div class="section1--block--output--box--table--cell first-cell">Federal Income Tax</div>
+                                <div class="section1--block--output--box--table--cell last-cell" id="fedIncomeTax">$0.00</div>
+                            </div>
+                            <div class="section1--block--output--box--table table-row">
+                                <div class="section1--block--output--box--table--cell first-cell">State Income Tax</div>
+                                <div class="section1--block--output--box--table--cell last-cell" id="stateIncomeTax">$25.74</div>
+                            </div>
+                            <div class="section1--block--output--box--table table-row">
+                                <div class="section1--block--output--box--table--cell first-cell">Total tax</div>
+                                <div class="section1--block--output--box--table--cell last-cell" id="totalTax">$25.74</div>
+                            </div>
+                            <div class="section1--block--output--box--table table-row">
+                                <div class="section1--block--output--box--table--cell first-cell subtitle">Net pay</div>
+                                <div class="section1--block--output--box--table--cell last-cell subtitle" id="netPay">$494.26</div>
+                            </div>
+                            <div class="section1--block--output--box--table table-row">
+                                <div class="section1--block--output--box--table--cell first-cell">Total tax rate</div>
+                                <div class="section1--block--output--box--table--cell last-cell" id="totalTaxRate">14.95%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section2" class="section2">
+        <div class="section2--title">
+            <div>Salary Rate Convertor</div>
+        </div>
+        <div class="section2--subtitle">
+            <div>Convert your Salary to Annual / Monthly / Weekly / Daily / Hourly</div>
+        </div>
+
+        <div class="section2--salary--block">
+            <div class="section2--salary--block--conversionhead">
+                <div>What's your Salary?</div>
+            </div>
+            <div class="section2--salary--block--conversionbody">
+                <div class="section2--salary--block--table">
+                    <div class="section2--salary--block--table row">
+                        <div class="section2--salary--block--table row--label">Yearly Salary</div>
+                        <div class="section2--salary--block--table row--textfield">
+                            <input type="number" id="yearly" class="input-box" value="60000.00">
+                        </div>
+                    </div>
+                    <div class="section2--salary--block--table row">
+                        <div class="section2--salary--block--table row--label">Monthly Salary</div>
+                        <div class="section2--salary--block--table row--textfield">
+                            <input type="number" id="monthly" class="input-box" value="5000.00">
+                        </div>
+
+                    </div>
+                    <div class="section2--salary--block--table row">
+                        <div class="section2--salary--block--table row--label">Biweekly Salary</div>
+                        <div class="section2--salary--block--table row--textfield">
+                            <input type="number" id="biweekly" class="input-box" value="2307.69">
+                        </div>
+
+                    </div>
+                    <div class="section2--salary--block--table row">
+                        <div class="section2--salary--block--table row--label">Weekly Salary</div>
+                        <div class="section2--salary--block--table row--textfield">
+                            <input type="number" id="weekly" class="input-box" value="1153.85">
+                        </div>
+
+                    </div>
+                    <div class="section2--salary--block--table row">
+                        <div class="section2--salary--block--table row--label">Daily Salary</div>
+                        <div class="section2--salary--block--table row--textfield">
+                            <input type="number" id="daily" class="input-box" value="230.77">
+                        </div>
+
+                    </div>
+                    <div class="section2--salary--block--table row">
+                        <div class="section2--salary--block--table row--label">Hourly Salary</div>
+                        <div class="section2--salary--block--table row--textfield">
+                            <input type="number" id="hourly" class="input-box" value="28.85">
+                        </div>
+
+                    </div>
+                    <div class="section2--salary--block--table row">
+                        <div class="section2--salary--block--table row--label">Hours worked per week</div>
+                        <div class="section2--salary--block--table row--textfield">
+                            <input type="number" id="hourWorked" class="input-box" value="40.00">
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section3" class="section3">
+        <div class="section3--block">
+            <div class="section3--block--title">My History</div>
+            <div class="section3--block--userinput">
+                <div class="section3--block--userinput value">
+                    <label for="fname">Date From:</label>
+                    <input type="date" id="fname" name="fname" minlength="3" required>
+                </div>
+                <div class="section3--block--userinput value">
+                    <label for="lname">Date to:</label>
+                    <input type="date" id="lname" name="lname" minlength="3" required>
+                </div>
+                <div class="section3--block--userinput value">
+                    <label for="dob">Salary:</label>
+                    <input type="number" id="dob" name="dob" required>
+                </div>
+                <div class="section3--block--userinput value">
+                    <label for="age">Tax:</label>
+                    <input type="number" id="age" name="age" required>
+                </div>
+            </div>
+
+            <div class="section3--block--button">
+                <input type="submit" id="addUser" value="Add User" disabled>
+            </div>
+
+            <div class="section3--block--outputtable">
+                <table class="section3--block--outputtable-table" id="userTable">
+                    <thead>
+                        <tr>
+                            <th>Date From</th>
+                            <th>Date to</th>
+                            <th>Salary</th>
+                            <th>Tax</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <script type="text/javascript" th:src="@{/javascript/myScript.js}"></script>
+    <script type="text/javascript" th:src="@{/javascript/section1.js}"></script>
+    <script type="text/javascript" th:src="@{/javascript/section2.js}"></script>
+    <script type="text/javascript" th:src="@{/javascript/section3.js}"></script>
+</body>
+
+</html>
